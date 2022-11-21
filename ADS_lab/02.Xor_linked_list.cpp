@@ -61,6 +61,35 @@ void del(Node **head)
     }
 
 }
+void del-at_specific(Node **head,int val)
+{
+    if (*head == NULL) cout << "List is empty";
+    else
+    {
+       Node* curr = *head;
+       Node* prev = NULL;
+       Node* next;
+        while (curr->data !=val)
+        {
+            next = Xor(prev, curr->npx);
+            prev = curr;
+            curr = next;
+        }
+        if (prev == NULL) {
+            *head = NULL;
+        }
+        if(Xor(curr->npx, prev) == NULL)
+        {
+            prev->npx = Xor(prev->npx, curr);
+        }
+        else {
+                 prev->npx = Xor(Xor(prev->npx, curr),Xor(curr->npx,prev)) ;
+
+        }
+        delete(curr);
+    }
+
+}
 int main()
 {
     Node * head =nullptr ;
